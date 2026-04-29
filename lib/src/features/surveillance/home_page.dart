@@ -417,7 +417,7 @@ class _SurveillanceHomePageState extends State<SurveillanceHomePage> {
         crossAxisCount: 2,
         mainAxisSpacing: 12,
         crossAxisSpacing: 12,
-        childAspectRatio: 1.2,
+        mainAxisExtent: 158,
       ),
       itemBuilder: (context, index) => _KpiCard(data: cards[index]),
     );
@@ -517,24 +517,45 @@ class _KpiCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(14),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Icon(data.icon, color: Theme.of(context).colorScheme.primary),
-            const Spacer(),
-            Text(
-              data.value,
-              style: Theme.of(context).textTheme.titleLarge,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
+            Icon(
+              data.icon,
+              size: 22,
+              color: Theme.of(context).colorScheme.primary,
             ),
-            const SizedBox(height: 6),
-            Text(data.label),
-            const SizedBox(height: 4),
-            Text(
-              data.caption,
-              style: TextStyle(color: Colors.white.withValues(alpha: 0.7)),
+            const SizedBox(height: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                    data.value,
+                    style: Theme.of(context).textTheme.titleLarge,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    data.label,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    data.caption,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      color: Colors.white.withValues(alpha: 0.7),
+                      fontSize: 12,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
